@@ -54,11 +54,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tabuleiro.cs">
+    <Compile Include="Tabuleiro_2J.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tabuleiro.Designer.cs">
-      <DependentUpon>Tabuleiro.cs</DependentUpon>
+    <Compile Include="Tabuleiro_2J.Designer.cs">
+      <DependentUpon>Tabuleiro_2J.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
@@ -73,6 +73,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Tabuleiro_2J.resx">
+      <DependentUpon>Tabuleiro_2J.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

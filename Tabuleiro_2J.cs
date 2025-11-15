@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace _4Linha
 {
-    public partial class Tabuleiro : Form
+    public partial class Tabuleiro_2J : Form
     {
-        public Tabuleiro()
+        public Tabuleiro_2J()
         {
             InitializeComponent();
         }

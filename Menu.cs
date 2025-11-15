@@ -16,5 +16,11 @@ namespace _4Linha
         {
             InitializeComponent();
         }
+
+        private void btn2J_Click(object sender, EventArgs e)
+        {
+            Tabuleiro_2J tabuleiro_2 = new Tabuleiro_2J();
+            tabuleiro_2.ShowDialog();
+        }
     }
 }

@@ -8,11 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 namespace _4Linha
 {
     public partial class Tabuleiro_2J : Form
     {
+        private SqlConnection conexao;
+        private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=GestaoVeiculos;Integrated Security=True;";
+
         // Nº de linhas e colunas do tabuleiro (a imagem tem 5 linhas x 6 colunas de círculos)
         private int linhas = 5;     // 5 filas de bolinhas
         private int colunas = 6;    // 6 colunas de bolinhas
@@ -73,6 +77,19 @@ namespace _4Linha
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
+            int Coluna = (e.X - offsetX) / larguraCasa;
+            int Linha = (e.Y - offsetY) / alturaCasa;
+
+            // Verifica se está dentro da zona válida do tabuleiro
+            if (Coluna >= 0 && Coluna < colunas && Linha >= 0 && Linha < linhas)
+            {
+                pictureBox1.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                pictureBox1.Cursor = Cursors.Default;
+            }
+
             // Se o jogo já terminou, ignora cliques
             if (jogoTerminado)
                 return;

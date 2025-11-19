@@ -9,11 +9,14 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace _4Linha
 {
     public partial class Login : Form
     {
+        // Propriedade para armazenar o username logado
+        public string UsuarioLogado { get; private set; }
         public Login()
         {
             InitializeComponent();
@@ -33,7 +36,7 @@ namespace _4Linha
 
         private void lbConvidado_Click(object sender, EventArgs e)
         {
-            Menu menu = new Menu();
+            Menu menu = new Menu("Convidado");
             menu.ShowDialog();
         }
 
@@ -51,7 +54,7 @@ namespace _4Linha
             if (ValidarLogin(username, password))
             {
                 // Abre o Form do menu
-                Menu menu = new Menu();
+                Menu menu = new Menu(username);
                 menu.Show();
 
                 // Esconde o Form de login
@@ -97,6 +100,13 @@ namespace _4Linha
                     return count > 0; // se for 1, o login está correto
                 }
             }
+        }
+
+        private void lbCadastro_Click(object sender, EventArgs e)
+        {
+            Cadastro cadastro = new Cadastro();
+            cadastro.Show();
+            this.Hide();
         }
     }
 }

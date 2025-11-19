@@ -38,9 +38,13 @@ namespace _4Linha
         // Jogador atual (começa o Vermelho)
         private Color jogadorAtual = Color.Red;
 
-        public Tabuleiro_2J()
+        // Propriedade para o nome do Jogador 1
+        private string nomeJogador1 = "Jogador 1";
+
+        public Tabuleiro_2J(string nomeJogador1 = "Jogador 1")
         {
             InitializeComponent();
+            this.nomeJogador1 = nomeJogador1;
 
             // Evita “flicker” ao desenhar
             this.DoubleBuffered = true;
@@ -124,7 +128,7 @@ namespace _4Linha
             if (Vitoria(linhaLivre, coluna))
             {
                 MessageBox.Show(
-                    $"{(jogadorAtual == Color.Red ? "Jogador 1" : "Jogador 2")} ganhou!"
+                    $"{(jogadorAtual == Color.Red ? nomeJogador1 : "Jogador 2")} ganhou!"
                 );
                 jogoTerminado = true;
                 pictureBox1.Invalidate(); // Redesenha para mostrar a última peça

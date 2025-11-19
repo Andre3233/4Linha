@@ -35,7 +35,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::_4Linha.Properties.Resources.tabuleiro;
-            this.pictureBox1.Location = new System.Drawing.Point(152, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(138, 46);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(539, 430);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -46,7 +46,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 488);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Tabuleiro_2J";
             this.Text = "Tabuleiro_2J";

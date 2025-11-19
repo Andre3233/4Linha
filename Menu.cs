@@ -12,14 +12,18 @@ namespace _4Linha
 {
     public partial class Menu : Form
     {
-        public Menu()
+        // Propriedade privada para armazenar o username logado
+        private string usuarioLogado;
+
+        public Menu(string usuario = "Jogador 1")
         {
             InitializeComponent();
+            usuarioLogado = usuario;
         }
 
         private void btn2J_Click(object sender, EventArgs e)
         {
-            Tabuleiro_2J tabuleiro_2 = new Tabuleiro_2J();
+            Tabuleiro_2J tabuleiro_2 = new Tabuleiro_2J(usuarioLogado);
             tabuleiro_2.ShowDialog();
         }
     }

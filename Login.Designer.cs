@@ -88,7 +88,7 @@
             this.lbCadastro.Size = new System.Drawing.Size(151, 13);
             this.lbCadastro.TabIndex = 6;
             this.lbCadastro.Text = "Não tem uma conta - Cadastro";
-            this.lbCadastro.Click += new System.EventHandler(this.label5_Click);
+            this.lbCadastro.Click += new System.EventHandler(this.lbCadastro_Click);
             // 
             // btnEntrar
             // 

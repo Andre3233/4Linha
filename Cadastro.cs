@@ -26,6 +26,7 @@ namespace _4Linha
         private void Cadastro_Load(object sender, EventArgs e)
         {
             CriarBaseDadosSeNaoExistir();
+            lbVoltar.Cursor = Cursors.Hand;
         }
 
         private void btnCriar_Click(object sender, EventArgs e)
@@ -138,6 +139,11 @@ namespace _4Linha
             }
         }
 
-        
+        private void lbVoltar_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Close();
+        }
     }
 }

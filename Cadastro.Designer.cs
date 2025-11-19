@@ -36,6 +36,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtConfPass = new System.Windows.Forms.TextBox();
+            this.lbVoltar = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCriar
@@ -106,11 +107,22 @@
             this.txtConfPass.Size = new System.Drawing.Size(214, 20);
             this.txtConfPass.TabIndex = 15;
             // 
+            // lbVoltar
+            // 
+            this.lbVoltar.AutoSize = true;
+            this.lbVoltar.Location = new System.Drawing.Point(50, 387);
+            this.lbVoltar.Name = "lbVoltar";
+            this.lbVoltar.Size = new System.Drawing.Size(34, 13);
+            this.lbVoltar.TabIndex = 17;
+            this.lbVoltar.Text = "Voltar";
+            this.lbVoltar.Click += new System.EventHandler(this.lbVoltar_Click);
+            // 
             // Cadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbVoltar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtConfPass);
             this.Controls.Add(this.btnCriar);
@@ -137,5 +149,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtConfPass;
+        private System.Windows.Forms.Label lbVoltar;
     }
 }

@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 
 namespace _4Linha
 {
-    public partial class Tabuleiro_3J : Form
+    public partial class Tabuleiro_1J : Form
     {
         private SqlConnection conexao;
         private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=GestaoVeiculos;Integrated Security=True;";
@@ -40,7 +40,11 @@ namespace _4Linha
 
         // Propriedade para o nome do Jogador 1
         private string nomeJogador1 = "Jogador 1";
-        public Tabuleiro_3J(string nomeJogador1 = "Jogador 1")
+        
+        //Bot
+        private Random bot = new Random();
+
+        public Tabuleiro_1J(string nomeJogador1 = "Jogador 1")
         {
             InitializeComponent();
             this.nomeJogador1 = nomeJogador1;
@@ -49,12 +53,12 @@ namespace _4Linha
             this.DoubleBuffered = true;
 
             // Liga eventos
-            this.Load += Tabuleiro_3J_Load;
+            this.Load += Tabuleiro_1J_Load;
             pictureBox1.MouseClick += pictureBox1_MouseClick;
             pictureBox1.Paint += pictureBox1_Paint;
         }
 
-        private void Tabuleiro_3J_Load(object sender, EventArgs e)
+        private void Tabuleiro_1J_Load(object sender, EventArgs e)
         {
             // Garante que o PictureBox usa o tamanho real da imagem (sem esticar)
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -69,7 +73,7 @@ namespace _4Linha
             // Altura aproximada de cada linha (distância entre centros ≈ 68px)
             alturaCasa = pictureBox1.Image.Height / linhas;     // ~68 px
 
-            // A imagem tem uma moldura azul em cima, por isso
+            // A imagem tem uma moldura azul em cima, por isso  
             // ajustamos um pouco para baixo para encaixar nas bolinhas
             offsetX = 0;   // praticamente encostado à esquerda
             offsetY = 4;   // pequeno ajuste vertical (testado na imagem)
@@ -134,8 +138,16 @@ namespace _4Linha
                 return;
             }
 
-            // Troca de jogador (Vermelho ↔ Amarelo)
+            // Troca de jogador
             jogadorAtual = (jogadorAtual == Color.Red) ? Color.Yellow : Color.Red;
+
+            // Se agora for o computador, ele joga imediatamente //ALTERAÇÃO
+            if (jogadorAtual == Color.Yellow)
+            {
+                JogadaComputador(); //ALTERAÇÃO
+                return;             //ALTERAÇÃO
+            }
+
 
             // Pede novo desenho do tabuleiro
             pictureBox1.Invalidate();
@@ -216,5 +228,93 @@ namespace _4Linha
             // Caso não tenha 4 em linha em nenhuma direção
             return false;
         }
+
+        private void JogadaComputador() //ALTERAÇÃO
+        {
+            if (jogoTerminado) return;
+
+            int coluna = -1;
+            int linhaLivre = -1;
+
+            // --- 1. Tentar ganhar ---
+            for (int c = 0; c < colunas; c++)
+            {
+                int l = LinhahLivre(c);
+                if (l == -1) continue;
+
+                tabuleiro[l, c] = Color.Yellow;
+                if (Vitoria(l, c))
+                {
+                    coluna = c;
+                    linhaLivre = l;
+                    break;
+                }
+                tabuleiro[l, c] = null;
+            }
+
+            // --- 2. Bloquear jogador ---
+            if (coluna == -1)
+            {
+                for (int c = 0; c < colunas; c++)
+                {
+                    int l = LinhahLivre(c);
+                    if (l == -1) continue;
+
+                    tabuleiro[l, c] = Color.Red;
+                    if (Vitoria(l, c))
+                    {
+                        coluna = c;
+                        linhaLivre = l;
+                        tabuleiro[l, c] = null;
+                        break;
+                    }
+                    tabuleiro[l, c] = null;
+                }
+            }
+
+            // --- 3. Escolha aleatória ---
+            if (coluna == -1)
+            {
+                do
+                {
+                    coluna = bot.Next(0, colunas);
+                    linhaLivre = LinhahLivre(coluna);
+                } while (linhaLivre == -1);
+            }
+            else
+            {
+                // Já calculámos linhaLivre nos passos 1 ou 2
+                if (linhaLivre == -1) linhaLivre = LinhahLivre(coluna);
+            }
+
+            // Coloca peça do computador (amarelo)
+            tabuleiro[linhaLivre, coluna] = Color.Yellow;
+
+            // Verifica vitória
+            if (Vitoria(linhaLivre, coluna))
+            {
+                MessageBox.Show("O computador ganhou!");
+                jogoTerminado = true;
+                pictureBox1.Invalidate();
+                return;
+            }
+
+            // Volta o turno ao jogador
+            jogadorAtual = Color.Red;
+            pictureBox1.Invalidate();
+        }
+
+        // Função auxiliar: devolve a primeira linha livre de uma coluna
+        private int LinhahLivre(int coluna) //ALTERAÇÃO
+        {
+            for (int l = linhas - 1; l >= 0; l--)
+            {
+                if (tabuleiro[l, coluna] == null)
+                    return l;
+            }
+            return -1;
+        }
+
+
     }
 }

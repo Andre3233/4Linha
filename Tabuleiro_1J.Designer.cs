@@ -1,6 +1,6 @@
 ﻿namespace _4Linha
 {
-    partial class Tabuleiro_3J
+    partial class Tabuleiro_1J
     {
         /// <summary>
         /// Required designer variable.
@@ -39,18 +39,18 @@
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(539, 430);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // Tabuleiro_3J
+            // Tabuleiro_1J
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Tabuleiro_3J";
-            this.Text = "Tabuleiro_3J";
-            this.Load += new System.EventHandler(this.Tabuleiro_3J_Load);
+            this.Name = "Tabuleiro_1J";
+            this.Text = "Tabuleiro_1J";
+            this.Load += new System.EventHandler(this.Tabuleiro_1J_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -400,11 +400,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tabuleiro_1J.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tabuleiro_1J.Designer.cs">
+      <DependentUpon>Tabuleiro_1J.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tabuleiro_2J.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Tabuleiro_2J.Designer.cs">
       <DependentUpon>Tabuleiro_2J.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tabuleiro_3J.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tabuleiro_3J.Designer.cs">
+      <DependentUpon>Tabuleiro_3J.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Cadastro.resx">
       <DependentUpon>Cadastro.cs</DependentUpon>
@@ -425,8 +437,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Tabuleiro_1J.resx">
+      <DependentUpon>Tabuleiro_1J.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tabuleiro_2J.resx">
       <DependentUpon>Tabuleiro_2J.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tabuleiro_3J.resx">
+      <DependentUpon>Tabuleiro_3J.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

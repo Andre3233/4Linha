@@ -26,5 +26,17 @@ namespace _4Linha
             Tabuleiro_2J tabuleiro_2 = new Tabuleiro_2J(usuarioLogado);
             tabuleiro_2.ShowDialog();
         }
+
+        private void btn3J_Click(object sender, EventArgs e)
+        {
+            Tabuleiro_3J tabuleiro_3 = new Tabuleiro_3J(usuarioLogado);
+            tabuleiro_3.ShowDialog();
+        }
+
+        private void btn1J_Click(object sender, EventArgs e)
+        {
+            Tabuleiro_1J tabuleiro_1 = new Tabuleiro_1J(usuarioLogado);
+            tabuleiro_1.ShowDialog();
+        }
     }
 }

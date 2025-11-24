@@ -35,6 +35,8 @@
             this.btn3J = new System.Windows.Forms.Button();
             this.btn1J = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnSair = new System.Windows.Forms.Button();
+            this.btn4J = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,11 +110,33 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // btnSair
+            // 
+            this.btnSair.Location = new System.Drawing.Point(722, 418);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(66, 20);
+            this.btnSair.TabIndex = 7;
+            this.btnSair.Text = "SAIR";
+            this.btnSair.UseVisualStyleBackColor = true;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
+            // 
+            // btn4J
+            // 
+            this.btn4J.Location = new System.Drawing.Point(62, 268);
+            this.btn4J.Name = "btn4J";
+            this.btn4J.Size = new System.Drawing.Size(75, 23);
+            this.btn4J.TabIndex = 8;
+            this.btn4J.Text = "4 Jogadores";
+            this.btn4J.UseVisualStyleBackColor = true;
+            this.btn4J.Click += new System.EventHandler(this.btn4J_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn4J);
+            this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btn1J);
             this.Controls.Add(this.btn3J);
             this.Controls.Add(this.btn2J);
@@ -137,6 +161,8 @@
         private System.Windows.Forms.Button btn2J;
         private System.Windows.Forms.Button btn3J;
         private System.Windows.Forms.Button btn1J;
+        private System.Windows.Forms.Button btnSair;
+        private System.Windows.Forms.Button btn4J;
     }
 }
 

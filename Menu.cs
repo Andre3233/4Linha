@@ -38,5 +38,16 @@ namespace _4Linha
             Tabuleiro_1J tabuleiro_1 = new Tabuleiro_1J(usuarioLogado);
             tabuleiro_1.ShowDialog();
         }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btn4J_Click(object sender, EventArgs e)
+        {
+            Tabuleiro_4J tabuleiro_4 = new Tabuleiro_4J(usuarioLogado);
+            tabuleiro_4.ShowDialog();
+        }
     }
 }

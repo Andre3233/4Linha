@@ -125,18 +125,33 @@ namespace _4Linha
             tabuleiro[linhaLivre, coluna] = jogadorAtual;
 
             // Verifica se este movimento deu vitória ANTES de trocar de jogador
+            // Depois de colocar a peça:
             if (Vitoria(linhaLivre, coluna))
             {
-                MessageBox.Show(
-                    $"{(jogadorAtual == Color.Red ? nomeJogador1 : "Jogador 2")} ganhou!"
+                var resultado = MessageBox.Show(
+                    $"{(jogadorAtual == Color.Red ? nomeJogador1 : "Jogador 2")} ganhou!\nQueres repetir?",
+                    "Vitória!",
+                    MessageBoxButtons.RetryCancel //ALTERAÇÃO
                 );
-                jogoTerminado = true;
-                pictureBox1.Invalidate(); // Redesenha para mostrar a última peça
-                return;
+
+                jogoTerminado = true; //ALTERAÇÃO
+
+                if (resultado == DialogResult.Retry) //ALTERAÇÃO
+                {
+                    ReiniciarJogo(); //ALTERAÇÃO
+                }
+                else if (resultado == DialogResult.Cancel) //ALTERAÇÃO
+                {
+                    this.Close(); //ALTERAÇÃO
+                }
+
+                pictureBox1.Invalidate(); //ALTERAÇÃO
+                return; //ALTERAÇÃO
             }
 
-            // Troca de jogador (Vermelho ↔ Amarelo)
-            jogadorAtual = (jogadorAtual == Color.Red) ? Color.Yellow : Color.Red;
+            // Começar em vermelho
+            jogadorAtual = (jogadorAtual == Color.Red) ? Color.Yellow : Color.Red; //ALTERAÇÃO
+
 
             // Pede novo desenho do tabuleiro
             pictureBox1.Invalidate();
@@ -217,5 +232,14 @@ namespace _4Linha
             // Caso não tenha 4 em linha em nenhuma direção
             return false;
         }
+
+        private void ReiniciarJogo() //ALTERAÇÃO
+        {
+            tabuleiro = new Color?[linhas, colunas]; // limpa a matriz //ALTERAÇÃO
+            jogadorAtual = Color.Red; // começa sempre o vermelho //ALTERAÇÃO
+            jogoTerminado = false; //ALTERAÇÃO
+            pictureBox1.Invalidate(); // redesenha //ALTERAÇÃO
+        }
+
     }
 }

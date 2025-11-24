@@ -130,12 +130,26 @@ namespace _4Linha
             // Verifica se este movimento deu vitória ANTES de trocar de jogador
             if (Vitoria(linhaLivre, coluna))
             {
-                MessageBox.Show(
-                    $"{(jogadorAtual == Color.Red ? nomeJogador1 : "Jogador 2")} ganhou!"
+                var resultado = MessageBox.Show(
+                $"{nomeJogador1} ganhou!\nQueres jogar outra vez?", 
+                "Vitória!",
+                MessageBoxButtons.RetryCancel 
                 );
-                jogoTerminado = true;
-                pictureBox1.Invalidate(); // Redesenha para mostrar a última peça
-                return;
+
+                jogoTerminado = true; 
+
+                if (resultado == DialogResult.Retry) 
+                {
+                    ReiniciarJogo();
+                }
+                else if (resultado == DialogResult.Cancel)
+                {
+                    this.Close();
+                }
+
+                pictureBox1.Invalidate(); 
+                return; 
+
             }
 
             // Troca de jogador
@@ -229,7 +243,7 @@ namespace _4Linha
             return false;
         }
 
-        private void JogadaComputador() //ALTERAÇÃO
+        private void JogadaComputador() 
         {
             if (jogoTerminado) return;
 
@@ -283,7 +297,7 @@ namespace _4Linha
             }
             else
             {
-                // Já calculámos linhaLivre nos passos 1 ou 2
+                // Já calculei linhaLivre nos passos 1 ou 2
                 if (linhaLivre == -1) linhaLivre = LinhahLivre(coluna);
             }
 
@@ -293,10 +307,25 @@ namespace _4Linha
             // Verifica vitória
             if (Vitoria(linhaLivre, coluna))
             {
-                MessageBox.Show("O computador ganhou!");
-                jogoTerminado = true;
-                pictureBox1.Invalidate();
-                return;
+                var resultado = MessageBox.Show(
+                "O computador ganhou!\nQueres jogar outra vez?", //ALTERAÇÃO
+                "Vitória!",
+                MessageBoxButtons.RetryCancel //ALTERAÇÃO
+                );
+
+                jogoTerminado = true; //ALTERAÇÃO
+
+                if (resultado == DialogResult.Retry) //ALTERAÇÃO
+                {
+                    ReiniciarJogo(); //ALTERAÇÃO
+                }
+                else if (resultado == DialogResult.Cancel) //ALTERAÇÃO
+                {
+                    this.Close(); //ALTERAÇÃO
+                }
+
+                pictureBox1.Invalidate(); //ALTERAÇÃO
+                return; //ALTERAÇÃO
             }
 
             // Volta o turno ao jogador
@@ -315,6 +344,13 @@ namespace _4Linha
             return -1;
         }
 
+        private void ReiniciarJogo() //ALTERAÇÃO
+        {
+            tabuleiro = new Color?[linhas, colunas]; //ALTERAÇÃO
+            jogadorAtual = Color.Red; //ALTERAÇÃO
+            jogoTerminado = false; //ALTERAÇÃO
+            pictureBox1.Invalidate(); //ALTERAÇÃO
+        }
 
     }
 }

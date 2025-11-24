@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 
 namespace _4Linha
 {
-    public partial class Tabuleiro_3J : Form
+    public partial class Tabuleiro_4J : Form
     {
         private SqlConnection conexao;
         private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=GestaoVeiculos;Integrated Security=True;";
@@ -36,12 +36,12 @@ namespace _4Linha
         private Color?[,] tabuleiro;
 
         // Jogador atual (começa o Vermelho)
-        private Color[] jogadores = { Color.Red, Color.Yellow, Color.Green };
+        private Color[] jogadores = { Color.Red, Color.Yellow, Color.Green, Color.Orange };
         private int indiceJogadorAtual = 0;
 
         // Propriedade para o nome do Jogador 1
         private string nomeJogador1 = "Jogador 1";
-        public Tabuleiro_3J(string nomeJogador1 = "Jogador 1")
+        public Tabuleiro_4J(string nomeJogador1 = "Jogador 1")
         {
             InitializeComponent();
             this.nomeJogador1 = nomeJogador1;
@@ -50,12 +50,12 @@ namespace _4Linha
             this.DoubleBuffered = true;
 
             // Liga eventos
-            this.Load += Tabuleiro_3J_Load;
+            this.Load += Tabuleiro_4J_Load;
             pictureBox1.MouseClick += pictureBox1_MouseClick;
             pictureBox1.Paint += pictureBox1_Paint;
         }
 
-        private void Tabuleiro_3J_Load(object sender, EventArgs e)
+        private void Tabuleiro_4J_Load(object sender, EventArgs e)
         {
             // Garante que o PictureBox usa o tamanho real da imagem (sem esticar)
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -130,32 +130,33 @@ namespace _4Linha
             {
                 if (Vitoria(linhaLivre, coluna))
                 {
-                    // Calcula o nome do vencedor diretamente na mensagem
                     string vencedor =
                         indiceJogadorAtual == 0 ? nomeJogador1 :
                         indiceJogadorAtual == 1 ? "Jogador 2" :
-                        "Jogador 3";
+                        indiceJogadorAtual == 2 ? "Jogador 3" :
+                        "Jogador 4";
 
                     var resultado = MessageBox.Show(
                         $"{vencedor} ganhou!\nQueres jogar outra vez?", //ALTERAÇÃO
                         "Vitória!",
-                        MessageBoxButtons.RetryCancel //ALTERAÇÃO
+                        MessageBoxButtons.RetryCancel                    //ALTERAÇÃO
                     );
 
-                    jogoTerminado = true; //ALTERAÇÃO
+                    jogoTerminado = true;
 
-                    if (resultado == DialogResult.Retry) //ALTERAÇÃO
+                    if (resultado == DialogResult.Retry)
                     {
-                        ReiniciarJogo(); //ALTERAÇÃO
+                        ReiniciarJogo(); // reinicia o jogo
                     }
-                    else if (resultado == DialogResult.Cancel) //ALTERAÇÃO
+                    else if (resultado == DialogResult.Cancel)
                     {
-                        this.Close(); //ALTERAÇÃO
+                        this.Close();    // fecha o Form
                     }
 
-                    pictureBox1.Invalidate(); //ALTERAÇÃO
-                    return; //ALTERAÇÃO
+                    pictureBox1.Invalidate();
+                    return;
                 }
+
             }
 
             // Troca de jogador (Vermelho ↔ Amarelo)
@@ -244,11 +245,12 @@ namespace _4Linha
 
         private void ReiniciarJogo() //ALTERAÇÃO
         {
-            tabuleiro = new Color?[linhas, colunas]; // limpa o tabuleiro //ALTERAÇÃO
-            indiceJogadorAtual = 0; // volta a começar pelo jogador vermelho //ALTERAÇÃO
-            jogoTerminado = false; //ALTERAÇÃO
-            pictureBox1.Invalidate(); // redesenha o tabuleiro //ALTERAÇÃO
+            tabuleiro = new Color?[linhas, colunas]; // limpa o tabuleiro
+            indiceJogadorAtual = 0;                  // volta a começar pelo jogador vermelho
+            jogoTerminado = false;
+            pictureBox1.Invalidate();                // redesenha o tabuleiro
         }
 
     }
 }
+

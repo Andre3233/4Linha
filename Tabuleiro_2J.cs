@@ -17,11 +17,11 @@ namespace _4Linha
         private SqlConnection conexao;
         private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=GestaoVeiculos;Integrated Security=True;";
 
-        // Nº de linhas e colunas do tabuleiro (a imagem tem 5 linhas x 6 colunas de círculos)
-        private int linhas = 5;     // 5 filas de bolinhas
-        private int colunas = 6;    // 6 colunas de bolinhas
+        // Nº de linhas e colunas do tabuleiro
+        private int linhas = 5;
+        private int colunas = 6;
 
-        // Largura e altura de cada “casa” lógica por cima da imagem
+        // Largura e altura de cada casa lógica
         private int larguraCasa;
         private int alturaCasa;
 
@@ -35,7 +35,7 @@ namespace _4Linha
         // Matriz que guarda as peças colocadas (null = vazio, Color = peça)
         private Color?[,] tabuleiro;
 
-        // Jogador atual (começa o Vermelho)
+        
         private Color jogadorAtual = Color.Red;
 
         // Propriedade para o nome do Jogador 1
@@ -70,8 +70,6 @@ namespace _4Linha
             // Altura aproximada de cada linha (distância entre centros ≈ 68px)
             alturaCasa = pictureBox1.Image.Height / linhas;     // ~68 px
 
-            // A imagem tem uma moldura azul em cima, por isso
-            // ajustamos um pouco para baixo para encaixar nas bolinhas
             offsetX = 0;   // praticamente encostado à esquerda
             offsetY = 4;   // pequeno ajuste vertical (testado na imagem)
 
@@ -125,35 +123,32 @@ namespace _4Linha
             tabuleiro[linhaLivre, coluna] = jogadorAtual;
 
             // Verifica se este movimento deu vitória ANTES de trocar de jogador
-            // Depois de colocar a peça:
             if (Vitoria(linhaLivre, coluna))
             {
                 var resultado = MessageBox.Show(
                     $"{(jogadorAtual == Color.Red ? nomeJogador1 : "Jogador 2")} ganhou!\nQueres repetir?",
                     "Vitória!",
-                    MessageBoxButtons.RetryCancel //ALTERAÇÃO
+                    MessageBoxButtons.RetryCancel
                 );
 
-                jogoTerminado = true; //ALTERAÇÃO
+                jogoTerminado = true; 
 
-                if (resultado == DialogResult.Retry) //ALTERAÇÃO
+                if (resultado == DialogResult.Retry)
                 {
-                    ReiniciarJogo(); //ALTERAÇÃO
+                    ReiniciarJogo(); 
                 }
-                else if (resultado == DialogResult.Cancel) //ALTERAÇÃO
+                else if (resultado == DialogResult.Cancel)
                 {
-                    this.Close(); //ALTERAÇÃO
+                    this.Close(); 
                 }
 
-                pictureBox1.Invalidate(); //ALTERAÇÃO
-                return; //ALTERAÇÃO
+                pictureBox1.Invalidate();
+                return; 
             }
 
             // Começar em vermelho
             jogadorAtual = (jogadorAtual == Color.Red) ? Color.Yellow : Color.Red; //ALTERAÇÃO
 
-
-            // Pede novo desenho do tabuleiro
             pictureBox1.Invalidate();
         }
 
@@ -171,8 +166,7 @@ namespace _4Linha
                     int y = offsetY + l * alturaCasa;
 
                     // GRElha invisível
-                    // A grelha não é desenhada, mas os cálculos lógicos continuam a usar
-                    // g.DrawRectangle(Pens.Black, x, y, larguraCasa, alturaCasa);
+                    // A grelha não é desenhada, mas os cálculos lógicos continuam 
 
                     // Desenha a peça se existir
                     if (tabuleiro[l, c] != null)
@@ -221,11 +215,11 @@ namespace _4Linha
             int vertical = 1 + Contar(1, 0);
             if (vertical >= 4) return true;
 
-            // Diagonal principal (\)
+            // Diagonal (\)
             int diagonal1 = 1 + Contar(1, 1) + Contar(-1, -1);
             if (diagonal1 >= 4) return true;
 
-            // Diagonal secundária (/)
+            // Diagonal (/)
             int diagonal2 = 1 + Contar(-1, 1) + Contar(1, -1);
             if (diagonal2 >= 4) return true;
 
@@ -233,12 +227,12 @@ namespace _4Linha
             return false;
         }
 
-        private void ReiniciarJogo() //ALTERAÇÃO
+        private void ReiniciarJogo()
         {
-            tabuleiro = new Color?[linhas, colunas]; // limpa a matriz //ALTERAÇÃO
-            jogadorAtual = Color.Red; // começa sempre o vermelho //ALTERAÇÃO
-            jogoTerminado = false; //ALTERAÇÃO
-            pictureBox1.Invalidate(); // redesenha //ALTERAÇÃO
+            tabuleiro = new Color?[linhas, colunas]; // limpa a matriz 
+            jogadorAtual = Color.Red; // começa sempre o vermelho 
+            jogoTerminado = false; 
+            pictureBox1.Invalidate(); // redesenha 
         }
 
     }

@@ -15,7 +15,7 @@ namespace _4Linha
 {
     public partial class Login : Form
     {
-        // Propriedade para armazenar o username logado
+        // Propriedade para armazenar o username
         public string UsuarioLogado { get; private set; }
         public Login()
         {

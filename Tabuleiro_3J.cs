@@ -39,7 +39,6 @@ namespace _4Linha
         private Color[] jogadores = { Color.Red, Color.Yellow, Color.Green };
         private int indiceJogadorAtual = 0;
 
-        // Propriedade para o nome do Jogador 1
         private string nomeJogador1 = "Jogador 1";
         public Tabuleiro_3J(string nomeJogador1 = "Jogador 1")
         {
@@ -70,8 +69,6 @@ namespace _4Linha
             // Altura aproximada de cada linha (distância entre centros ≈ 68px)
             alturaCasa = pictureBox1.Image.Height / linhas;     // ~68 px
 
-            // A imagem tem uma moldura azul em cima, por isso
-            // ajustamos um pouco para baixo para encaixar nas bolinhas
             offsetX = 0;   // praticamente encostado à esquerda
             offsetY = 4;   // pequeno ajuste vertical (testado na imagem)
 
@@ -137,24 +134,24 @@ namespace _4Linha
                         "Jogador 3";
 
                     var resultado = MessageBox.Show(
-                        $"{vencedor} ganhou!\nQueres jogar outra vez?", //ALTERAÇÃO
+                        $"{vencedor} ganhou!\nQueres jogar outra vez?", 
                         "Vitória!",
-                        MessageBoxButtons.RetryCancel //ALTERAÇÃO
+                        MessageBoxButtons.RetryCancel 
                     );
 
-                    jogoTerminado = true; //ALTERAÇÃO
+                    jogoTerminado = true;
 
-                    if (resultado == DialogResult.Retry) //ALTERAÇÃO
+                    if (resultado == DialogResult.Retry)
                     {
-                        ReiniciarJogo(); //ALTERAÇÃO
+                        ReiniciarJogo(); 
                     }
-                    else if (resultado == DialogResult.Cancel) //ALTERAÇÃO
+                    else if (resultado == DialogResult.Cancel)
                     {
-                        this.Close(); //ALTERAÇÃO
+                        this.Close(); 
                     }
 
-                    pictureBox1.Invalidate(); //ALTERAÇÃO
-                    return; //ALTERAÇÃO
+                    pictureBox1.Invalidate();
+                    return;
                 }
             }
 
@@ -181,7 +178,7 @@ namespace _4Linha
 
                     // GRElha invisível
                     // A grelha não é desenhada, mas os cálculos lógicos continuam a usar
-                    // g.DrawRectangle(Pens.Black, x, y, larguraCasa, alturaCasa);
+                    
 
                     // Desenha a peça se existir
                     if (tabuleiro[l, c] != null)

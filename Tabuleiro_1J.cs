@@ -38,7 +38,6 @@ namespace _4Linha
         // Jogador atual (começa o Vermelho)
         private Color jogadorAtual = Color.Red;
 
-        // Propriedade para o nome do Jogador 1
         private string nomeJogador1 = "Jogador 1";
         
         //Bot
@@ -73,8 +72,6 @@ namespace _4Linha
             // Altura aproximada de cada linha (distância entre centros ≈ 68px)
             alturaCasa = pictureBox1.Image.Height / linhas;     // ~68 px
 
-            // A imagem tem uma moldura azul em cima, por isso  
-            // ajustamos um pouco para baixo para encaixar nas bolinhas
             offsetX = 0;   // praticamente encostado à esquerda
             offsetY = 4;   // pequeno ajuste vertical (testado na imagem)
 
@@ -155,11 +152,11 @@ namespace _4Linha
             // Troca de jogador
             jogadorAtual = (jogadorAtual == Color.Red) ? Color.Yellow : Color.Red;
 
-            // Se agora for o computador, ele joga imediatamente //ALTERAÇÃO
+            // Se agora for o computador, ele joga imediatamente 
             if (jogadorAtual == Color.Yellow)
             {
-                JogadaComputador(); //ALTERAÇÃO
-                return;             //ALTERAÇÃO
+                JogadaComputador(); 
+                return;             
             }
 
 
@@ -182,7 +179,6 @@ namespace _4Linha
 
                     // GRElha invisível
                     // A grelha não é desenhada, mas os cálculos lógicos continuam a usar
-                    // g.DrawRectangle(Pens.Black, x, y, larguraCasa, alturaCasa);
 
                     // Desenha a peça se existir
                     if (tabuleiro[l, c] != null)
@@ -231,11 +227,11 @@ namespace _4Linha
             int vertical = 1 + Contar(1, 0);
             if (vertical >= 4) return true;
 
-            // Diagonal principal (\)
+            // Diagonal (\)
             int diagonal1 = 1 + Contar(1, 1) + Contar(-1, -1);
             if (diagonal1 >= 4) return true;
 
-            // Diagonal secundária (/)
+            // Diagonal (/)
             int diagonal2 = 1 + Contar(-1, 1) + Contar(1, -1);
             if (diagonal2 >= 4) return true;
 
@@ -308,24 +304,24 @@ namespace _4Linha
             if (Vitoria(linhaLivre, coluna))
             {
                 var resultado = MessageBox.Show(
-                "O computador ganhou!\nQueres jogar outra vez?", //ALTERAÇÃO
+                "O computador ganhou!\nQueres jogar outra vez?",
                 "Vitória!",
-                MessageBoxButtons.RetryCancel //ALTERAÇÃO
+                MessageBoxButtons.RetryCancel 
                 );
 
-                jogoTerminado = true; //ALTERAÇÃO
+                jogoTerminado = true;
 
-                if (resultado == DialogResult.Retry) //ALTERAÇÃO
+                if (resultado == DialogResult.Retry) 
                 {
-                    ReiniciarJogo(); //ALTERAÇÃO
+                    ReiniciarJogo(); 
                 }
-                else if (resultado == DialogResult.Cancel) //ALTERAÇÃO
+                else if (resultado == DialogResult.Cancel) 
                 {
-                    this.Close(); //ALTERAÇÃO
+                    this.Close(); 
                 }
 
-                pictureBox1.Invalidate(); //ALTERAÇÃO
-                return; //ALTERAÇÃO
+                pictureBox1.Invalidate(); 
+                return;
             }
 
             // Volta o turno ao jogador
@@ -334,7 +330,7 @@ namespace _4Linha
         }
 
         // Função auxiliar: devolve a primeira linha livre de uma coluna
-        private int LinhahLivre(int coluna) //ALTERAÇÃO
+        private int LinhahLivre(int coluna) 
         {
             for (int l = linhas - 1; l >= 0; l--)
             {
@@ -344,12 +340,12 @@ namespace _4Linha
             return -1;
         }
 
-        private void ReiniciarJogo() //ALTERAÇÃO
+        private void ReiniciarJogo() 
         {
-            tabuleiro = new Color?[linhas, colunas]; //ALTERAÇÃO
-            jogadorAtual = Color.Red; //ALTERAÇÃO
-            jogoTerminado = false; //ALTERAÇÃO
-            pictureBox1.Invalidate(); //ALTERAÇÃO
+            tabuleiro = new Color?[linhas, colunas];
+            jogadorAtual = Color.Red; 
+            jogoTerminado = false; 
+            pictureBox1.Invalidate(); 
         }
 
     }

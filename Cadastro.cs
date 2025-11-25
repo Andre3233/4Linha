@@ -53,7 +53,7 @@ namespace _4Linha
             if (RegistrarUsuario(username, password))
             {
                 MessageBox.Show("Conta criada com sucesso!");
-                this.Close(); // fecha o form de cadastro
+                this.Close();
             }
             else
             {
@@ -85,7 +85,7 @@ namespace _4Linha
             }
             catch (MySqlException ex)
             {
-                // Se username já existe (erro 1062)
+                // Se username já existe
                 Console.WriteLine(ex.Message);
                 return false;
             }

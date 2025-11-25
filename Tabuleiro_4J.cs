@@ -70,8 +70,6 @@ namespace _4Linha
             // Altura aproximada de cada linha (distância entre centros ≈ 68px)
             alturaCasa = pictureBox1.Image.Height / linhas;     // ~68 px
 
-            // A imagem tem uma moldura azul em cima, por isso
-            // ajustamos um pouco para baixo para encaixar nas bolinhas
             offsetX = 0;   // praticamente encostado à esquerda
             offsetY = 4;   // pequeno ajuste vertical (testado na imagem)
 
@@ -137,9 +135,9 @@ namespace _4Linha
                         "Jogador 4";
 
                     var resultado = MessageBox.Show(
-                        $"{vencedor} ganhou!\nQueres jogar outra vez?", //ALTERAÇÃO
+                        $"{vencedor} ganhou!\nQueres jogar outra vez?",
                         "Vitória!",
-                        MessageBoxButtons.RetryCancel                    //ALTERAÇÃO
+                        MessageBoxButtons.RetryCancel                   
                     );
 
                     jogoTerminado = true;
@@ -182,7 +180,6 @@ namespace _4Linha
 
                     // GRElha invisível
                     // A grelha não é desenhada, mas os cálculos lógicos continuam a usar
-                    // g.DrawRectangle(Pens.Black, x, y, larguraCasa, alturaCasa);
 
                     // Desenha a peça se existir
                     if (tabuleiro[l, c] != null)
@@ -231,11 +228,11 @@ namespace _4Linha
             int vertical = 1 + Contar(1, 0);
             if (vertical >= 4) return true;
 
-            // Diagonal principal (\)
+            // Diagonal (\)
             int diagonal1 = 1 + Contar(1, 1) + Contar(-1, -1);
             if (diagonal1 >= 4) return true;
 
-            // Diagonal secundária (/)
+            // Diagonal (/)
             int diagonal2 = 1 + Contar(-1, 1) + Contar(1, -1);
             if (diagonal2 >= 4) return true;
 
@@ -243,7 +240,7 @@ namespace _4Linha
             return false;
         }
 
-        private void ReiniciarJogo() //ALTERAÇÃO
+        private void ReiniciarJogo()
         {
             tabuleiro = new Color?[linhas, colunas]; // limpa o tabuleiro
             indiceJogadorAtual = 0;                  // volta a começar pelo jogador vermelho

@@ -1,22 +1,24 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.Data.Sqlite;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace _4Linha
 {
     public partial class Cadastro : Form
     {
-        private string connectionString = "server=localhost;database=jogo4linha;user=root;password=mysql;";
+        private string connectionString = "Data Source=jogo4linha.db";
 
         public Cadastro()
         {
@@ -54,6 +56,9 @@ namespace _4Linha
             {
                 MessageBox.Show("Conta criada com sucesso!");
                 this.Close();
+
+                Login login = new Login();
+                login.ShowDialog();
             }
             else
             {
@@ -67,13 +72,13 @@ namespace _4Linha
 
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                using (var conn = new SqliteConnection(connectionString)) 
                 {
                     conn.Open();
 
                     string sql = "INSERT INTO Utilizadores (username, password_hash) VALUES (@user, @pass)";
 
-                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    using (var cmd = new SqliteCommand(sql, conn)) 
                     {
                         cmd.Parameters.AddWithValue("@user", username);
                         cmd.Parameters.AddWithValue("@pass", hashPassword);
@@ -83,9 +88,8 @@ namespace _4Linha
                     }
                 }
             }
-            catch (MySqlException ex)
+            catch (SqliteException ex) 
             {
-                // Se username já existe
                 Console.WriteLine(ex.Message);
                 return false;
             }
@@ -108,31 +112,18 @@ namespace _4Linha
 
         private void CriarBaseDadosSeNaoExistir()
         {
-            // Conexão ao MySQL sem database
-            string connStr = "server=localhost;user=root;password=mysql;";
-            using (MySqlConnection conn = new MySqlConnection(connStr))
+            using (var conn = new SqliteConnection(connectionString))
             {
-                conn.Open();
+                conn.Open(); // Aqui o ficheiro .db é criado automaticamente se não existir
 
-                // Cria a base de dados se não existir
-                string sqlDB = "CREATE DATABASE IF NOT EXISTS jogo4linha";
-                using (MySqlCommand cmd = new MySqlCommand(sqlDB, conn))
-                {
-                    cmd.ExecuteNonQuery();
-                }
-
-                // Seleciona a base de dados
-                conn.ChangeDatabase("jogo4linha");
-
-                // Cria tabela Utilizadores se não existir
                 string sqlTable = @"
-            CREATE TABLE IF NOT EXISTS Utilizadores (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                username VARCHAR(50) NOT NULL UNIQUE,
-                password_hash VARCHAR(255) NOT NULL
-            );";
+        CREATE TABLE IF NOT EXISTS Utilizadores (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL UNIQUE,
+            password_hash TEXT NOT NULL
+        );";
 
-                using (MySqlCommand cmd = new MySqlCommand(sqlTable, conn))
+                using (var cmd = new SqliteCommand(sqlTable, conn))
                 {
                     cmd.ExecuteNonQuery();
                 }

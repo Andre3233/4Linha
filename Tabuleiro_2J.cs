@@ -7,15 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using System.Data.SqlClient;
 
 namespace _4Linha
 {
     public partial class Tabuleiro_2J : Form
     {
-        private SqlConnection conexao;
-        private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=GestaoVeiculos;Integrated Security=True;";
+        private string connectionString = "Data Source=jogo4linha.db;Version=3;";
 
         // Nº de linhas e colunas do tabuleiro
         private int linhas = 5;

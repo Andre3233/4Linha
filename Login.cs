@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.IO;
+using Microsoft.Data.Sqlite;
 
 namespace _4Linha
 {
@@ -17,6 +19,8 @@ namespace _4Linha
     {
         // Propriedade para armazenar o username
         public string UsuarioLogado { get; private set; }
+
+        private string connectionString = "Data Source=jogo4linha.db"; // Apenas o necessário
         public Login()
         {
             InitializeComponent();
@@ -53,6 +57,8 @@ namespace _4Linha
 
             if (ValidarLogin(username, password))
             {
+                UsuarioLogado = username; // Regista o utilizador logado
+
                 // Abre o Form do menu
                 Menu menu = new Menu(username);
                 menu.Show();
@@ -82,22 +88,19 @@ namespace _4Linha
         {
             string hashPassword = GerarHash(password); // gera hash da password inserida
 
-            string connectionString = "server=localhost;database=jogo4linha;user=root;password=mysql;";
-
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            using (var conn = new SqliteConnection(connectionString))
             {
-                conn.Open();
+                conn.Open(); // cria automaticamente o ficheiro .db se não existir
 
                 string sql = "SELECT COUNT(*) FROM Utilizadores WHERE username = @user AND password_hash = @pass";
 
-                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                using (var cmd = new SqliteCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@user", username);
-                    cmd.Parameters.AddWithValue("@pass", hashPassword); // usa o hash
+                    cmd.Parameters.AddWithValue("@pass", hashPassword);
 
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    return count > 0; // se for 1, o login está correto
+                    return count > 0;
                 }
             }
         }

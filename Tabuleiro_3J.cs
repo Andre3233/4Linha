@@ -34,11 +34,15 @@ namespace _4Linha
         private Color[] jogadores = { Color.Red, Color.Yellow, Color.Green };
         private int indiceJogadorAtual = 0;
 
-        private string nomeJogador1 = "Jogador 1";
-        public Tabuleiro_3J(string nomeJogador1 = "Jogador 1")
+        // Propriedade para o nome do Jogador 1
+        private string usuarioLogado;
+
+        List<string> convidados = Nomear_convidados.convidados;
+        public Tabuleiro_3J(string usuario, List<string> nomesconvidados)
         {
             InitializeComponent();
-            this.nomeJogador1 = nomeJogador1;
+            this.usuarioLogado = usuario;
+            this.convidados = nomesconvidados;
 
             // Evita “flicker” ao desenhar
             this.DoubleBuffered = true;
@@ -116,7 +120,8 @@ namespace _4Linha
             // Coloca a peça do jogador atual na posição encontrada
             tabuleiro[linhaLivre, coluna] = jogadores[indiceJogadorAtual];
 
-
+            //Força o desenho imediato da última peça antes de verificação de vitória
+            pictureBox1.Refresh();
             // Verifica se este movimento deu vitória ANTES de trocar de jogador
             if (Vitoria(linhaLivre, coluna))
             {
@@ -124,9 +129,9 @@ namespace _4Linha
                 {
                     // Calcula o nome do vencedor diretamente na mensagem
                     string vencedor =
-                        indiceJogadorAtual == 0 ? nomeJogador1 :
-                        indiceJogadorAtual == 1 ? "Jogador 2" :
-                        "Jogador 3";
+                        indiceJogadorAtual == 0 ? usuarioLogado :
+                        indiceJogadorAtual == 1 ? convidados[0] :
+                        convidados[1];
 
                     var resultado = MessageBox.Show(
                         $"{vencedor} ganhou!\nQueres jogar outra vez?", 
@@ -234,13 +239,19 @@ namespace _4Linha
             return false;
         }
 
-        private void ReiniciarJogo() //ALTERAÇÃO
+        private void ReiniciarJogo()
         {
-            tabuleiro = new Color?[linhas, colunas]; // limpa o tabuleiro //ALTERAÇÃO
-            indiceJogadorAtual = 0; // volta a começar pelo jogador vermelho //ALTERAÇÃO
+            tabuleiro = new Color?[linhas, colunas]; // limpa o tabuleiro
+            indiceJogadorAtual = 0; // volta a começar pelo jogador vermelho
             jogoTerminado = false; //ALTERAÇÃO
-            pictureBox1.Invalidate(); // redesenha o tabuleiro //ALTERAÇÃO
+            pictureBox1.Invalidate(); // redesenha o tabuleiro 
         }
 
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            Menu menu = new Menu(usuarioLogado, Nomear_convidados.convidados);
+            menu.Show();
+            this.Close();
+        }
     }
 }

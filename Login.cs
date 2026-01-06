@@ -20,7 +20,7 @@ namespace _4Linha
         // Propriedade para armazenar o username
         public string UsuarioLogado { get; private set; }
 
-        private string connectionString = "Data Source=jogo4linha.db"; // Apenas o necessário
+        private string connectionString = "Data Source=jogo4linha.db";
         public Login()
         {
             InitializeComponent();
@@ -40,8 +40,9 @@ namespace _4Linha
 
         private void lbConvidado_Click(object sender, EventArgs e)
         {
-            Menu menu = new Menu("Convidado");
-            menu.ShowDialog();
+            Modo_Jogo modo_Jogo = new Modo_Jogo("Convidado");
+            this.Hide();
+            modo_Jogo.ShowDialog();
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
@@ -60,8 +61,8 @@ namespace _4Linha
                 UsuarioLogado = username; // Regista o utilizador logado
 
                 // Abre o Form do menu
-                Menu menu = new Menu(username);
-                menu.Show();
+                Modo_Jogo modo_Jogo = new Modo_Jogo(username);
+                modo_Jogo.Show();
 
                 // Esconde o Form de login
                 this.Hide();

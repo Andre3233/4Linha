@@ -36,12 +36,15 @@ namespace _4Linha
         private Color jogadorAtual = Color.Red;
 
         // Propriedade para o nome do Jogador 1
-        private string nomeJogador1 = "Jogador 1";
+        private string usuarioLogado;
 
-        public Tabuleiro_2J(string nomeJogador1 = "Jogador 1")
+        List<string> convidados = Nomear_convidados.convidados;
+
+        public Tabuleiro_2J(string usuario, List<string> nomesconvidados)
         {
             InitializeComponent();
-            this.nomeJogador1 = nomeJogador1;
+            this.usuarioLogado = usuario;
+            this.convidados = nomesconvidados;
 
             // Evita “flicker” ao desenhar
             this.DoubleBuffered = true;
@@ -119,11 +122,13 @@ namespace _4Linha
             // Coloca a peça do jogador atual na posição encontrada
             tabuleiro[linhaLivre, coluna] = jogadorAtual;
 
+            //Força o desenho imediato da última peça antes de verificação de vitória
+            pictureBox1.Refresh();
             // Verifica se este movimento deu vitória ANTES de trocar de jogador
             if (Vitoria(linhaLivre, coluna))
             {
                 var resultado = MessageBox.Show(
-                    $"{(jogadorAtual == Color.Red ? nomeJogador1 : "Jogador 2")} ganhou!\nQueres repetir?",
+                    $"{(jogadorAtual == Color.Red ? usuarioLogado : convidados[0])} ganhou!\nQueres repetir?",
                     "Vitória!",
                     MessageBoxButtons.RetryCancel
                 );
@@ -136,7 +141,9 @@ namespace _4Linha
                 }
                 else if (resultado == DialogResult.Cancel)
                 {
-                    this.Close(); 
+                    this.Close();
+                    Menu menu = new Menu(usuarioLogado, Nomear_convidados.convidados);
+                    menu.ShowDialog();
                 }
 
                 pictureBox1.Invalidate();
@@ -144,7 +151,7 @@ namespace _4Linha
             }
 
             // Começar em vermelho
-            jogadorAtual = (jogadorAtual == Color.Red) ? Color.Yellow : Color.Red; //ALTERAÇÃO
+            jogadorAtual = (jogadorAtual == Color.Red) ? Color.Yellow : Color.Red;
 
             pictureBox1.Invalidate();
         }
@@ -232,5 +239,11 @@ namespace _4Linha
             pictureBox1.Invalidate(); // redesenha 
         }
 
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            Menu menu = new Menu(usuarioLogado, Nomear_convidados.convidados);
+            menu.Show();
+            this.Close();
+        }
     }
 }

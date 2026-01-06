@@ -33,15 +33,16 @@ namespace _4Linha
         // Jogador atual (começa o Vermelho)
         private Color jogadorAtual = Color.Red;
 
-        private string nomeJogador1 = "Jogador 1";
-        
+        // Propriedade para o nome do Jogador 1
+        private string usuarioLogado;
+
         //Bot
         private Random bot = new Random();
 
-        public Tabuleiro_1J(string nomeJogador1 = "Jogador 1")
+        public Tabuleiro_1J(string usuario)
         {
             InitializeComponent();
-            this.nomeJogador1 = nomeJogador1;
+            this.usuarioLogado = usuario;
 
             // Evita “flicker” ao desenhar
             this.DoubleBuffered = true;
@@ -119,11 +120,13 @@ namespace _4Linha
             // Coloca a peça do jogador atual na posição encontrada
             tabuleiro[linhaLivre, coluna] = jogadorAtual;
 
+            //Força o desenho imediato da última peça antes de verificação de vitória
+            pictureBox1.Refresh();
             // Verifica se este movimento deu vitória ANTES de trocar de jogador
             if (Vitoria(linhaLivre, coluna))
             {
                 var resultado = MessageBox.Show(
-                $"{nomeJogador1} ganhou!\nQueres jogar outra vez?", 
+                $"{usuarioLogado} ganhou!\nQueres jogar outra vez?", 
                 "Vitória!",
                 MessageBoxButtons.RetryCancel 
                 );
@@ -295,6 +298,8 @@ namespace _4Linha
             // Coloca peça do computador (amarelo)
             tabuleiro[linhaLivre, coluna] = Color.Yellow;
 
+            //Força o desenho imediato da última peça antes de verificação de vitória
+            pictureBox1.Refresh();
             // Verifica vitória
             if (Vitoria(linhaLivre, coluna))
             {
@@ -312,7 +317,9 @@ namespace _4Linha
                 }
                 else if (resultado == DialogResult.Cancel) 
                 {
-                    this.Close(); 
+                    this.Close();
+                    Menu menu = new Menu(usuarioLogado, Nomear_convidados.convidados);
+                    menu.ShowDialog();
                 }
 
                 pictureBox1.Invalidate(); 
@@ -343,5 +350,38 @@ namespace _4Linha
             pictureBox1.Invalidate(); 
         }
 
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            // Se a lista de convidados estiver vazia, usa od nomes default
+            if (Nomear_convidados.convidados.Count == 0)
+            {
+                Nomear_convidados.convidados.AddRange(new List<string> { "Jogador2", "Jogador3", "Jogador4" });
+            }
+
+            // Abre o Menu passando o username logado
+            Menu menu = new Menu(usuarioLogado, Nomear_convidados.convidados);
+            menu.Show();
+            this.Close();
+        }
+
+        private void Tabuleiro_1J_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                // Cancelar o fechamento automático
+                e.Cancel = true;
+
+                // Esconder o tabuleiro
+                this.Hide();
+
+                // Abrir o menu
+                Menu menu = new Menu(usuarioLogado, Nomear_convidados.convidados);
+                menu.ShowDialog();
+
+                // Fechar de vez depois do menu
+                this.FormClosing -= Tabuleiro_1J_FormClosing; // desliga o evento para não entrar em loop
+                this.Close();
+            }
+        }
     }
 }

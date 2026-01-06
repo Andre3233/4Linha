@@ -35,11 +35,14 @@ namespace _4Linha
         private int indiceJogadorAtual = 0;
 
         // Propriedade para o nome do Jogador 1
-        private string nomeJogador1 = "Jogador 1";
-        public Tabuleiro_4J(string nomeJogador1 = "Jogador 1")
+        private string usuarioLogado;
+
+        List<string> convidados = Nomear_convidados.convidados;
+        public Tabuleiro_4J(string usuario, List<string> nomeconvidados)
         {
             InitializeComponent();
-            this.nomeJogador1 = nomeJogador1;
+            this.usuarioLogado = usuario;
+            this.convidados = nomeconvidados;
 
             // Evita “flicker” ao desenhar
             this.DoubleBuffered = true;
@@ -117,17 +120,18 @@ namespace _4Linha
             // Coloca a peça do jogador atual na posição encontrada
             tabuleiro[linhaLivre, coluna] = jogadores[indiceJogadorAtual];
 
-
+            //Força o desenho imediato da última peça antes de verificação de vitória
+            pictureBox1.Refresh();
             // Verifica se este movimento deu vitória ANTES de trocar de jogador
             if (Vitoria(linhaLivre, coluna))
             {
                 if (Vitoria(linhaLivre, coluna))
                 {
                     string vencedor =
-                        indiceJogadorAtual == 0 ? nomeJogador1 :
-                        indiceJogadorAtual == 1 ? "Jogador 2" :
-                        indiceJogadorAtual == 2 ? "Jogador 3" :
-                        "Jogador 4";
+                        indiceJogadorAtual == 0 ? usuarioLogado :
+                        indiceJogadorAtual == 1 ? convidados[0] :
+                        indiceJogadorAtual == 2 ? convidados[1] :
+                        convidados[2];
 
                     var resultado = MessageBox.Show(
                         $"{vencedor} ganhou!\nQueres jogar outra vez?",
@@ -243,6 +247,12 @@ namespace _4Linha
             pictureBox1.Invalidate();                // redesenha o tabuleiro
         }
 
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            Menu menu = new Menu(usuarioLogado, Nomear_convidados.convidados);
+            menu.Show();
+            this.Close();
+        }
     }
 }
 

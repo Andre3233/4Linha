@@ -38,6 +38,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnSair = new System.Windows.Forms.Button();
             this.btn4J = new System.Windows.Forms.Button();
+            this.btnConv = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,12 +132,23 @@
             this.btn4J.UseVisualStyleBackColor = true;
             this.btn4J.Click += new System.EventHandler(this.btn4J_Click);
             // 
+            // btnConv
+            // 
+            this.btnConv.Location = new System.Drawing.Point(722, 1);
+            this.btnConv.Name = "btnConv";
+            this.btnConv.Size = new System.Drawing.Size(75, 23);
+            this.btnConv.TabIndex = 9;
+            this.btnConv.Text = "Convidados";
+            this.btnConv.UseVisualStyleBackColor = true;
+            this.btnConv.Click += new System.EventHandler(this.btnConv_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnConv);
             this.Controls.Add(this.btn4J);
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btn1J);
@@ -166,6 +178,7 @@
         private System.Windows.Forms.Button btn1J;
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Button btn4J;
+        private System.Windows.Forms.Button btnConv;
     }
 }
 

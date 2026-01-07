@@ -36,15 +36,54 @@ namespace _4Linha
         {
             int numConvidados = int.Parse(cbbxConv.SelectedItem.ToString());
 
-            convidados.Clear();
-            //Verifica a textbox e poem um default caso estaja vazia
-            if(numConvidados >= 1)
-                convidados.Add(string.IsNullOrWhiteSpace(txtconv1.Text) ? "Convidado 1" : txtconv1.Text);
-            if (numConvidados >= 2)
-                convidados.Add(string.IsNullOrWhiteSpace(txtconv2.Text) ? "Convidado 2" : txtconv2.Text);
-            if(numConvidados == 3)
-                convidados.Add(string.IsNullOrWhiteSpace(txtconv3.Text) ? "Convidado 3" : txtconv3.Text);
+            // Só cria a lista se estiver vazia (primeira vez)
+            if (convidados == null)
+                convidados = new List<string>();
 
+            // Convidado 1
+            if (!string.IsNullOrWhiteSpace(txtconv1.Text))
+            {
+                if (convidados.Count >= 1)
+                    convidados[0] = txtconv1.Text; // altera o nome existente
+                else
+                    convidados.Add(txtconv1.Text); // adiciona novo nome
+            }
+            else
+            {
+                if (convidados.Count == 0)
+                    convidados.Add("Convidado 1"); // default se não houver nenhum nome
+                                                   // caso contrário mantém o nome anterior
+            }
+
+            // Convidado 2
+            if (!string.IsNullOrWhiteSpace(txtconv2.Text))
+            {
+                if (convidados.Count >= 2)
+                    convidados[1] = txtconv2.Text;
+                else
+                    convidados.Add(txtconv2.Text);
+            }
+            else
+            {
+                if (convidados.Count < 2)
+                    convidados.Add("Convidado 2");
+            }
+
+            // Convidado 3
+            if (!string.IsNullOrWhiteSpace(txtconv3.Text))
+            {
+                if (convidados.Count >= 3)
+                    convidados[2] = txtconv3.Text;
+                else
+                    convidados.Add(txtconv3.Text);
+            }
+            else
+            {
+                if (convidados.Count < 3)
+                    convidados.Add("Convidado 3");
+            }
+
+            // Volta ao menu passando a lista atualizada
             Menu menu = new Menu(usuarioLogado, convidados);
             this.Hide();
             menu.ShowDialog();

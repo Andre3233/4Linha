@@ -52,13 +52,20 @@ namespace _4Linha
         private void btn4J_Click(object sender, EventArgs e)
         {
             Tabuleiro_4J tabuleiro_4 = new Tabuleiro_4J(usuarioLogado, convidados);
-            this.Hide();
-            tabuleiro_4.ShowDialog();
+            tabuleiro_4.Show();
+            this.Close();
         }
 
         private void Menu_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnConv_Click(object sender, EventArgs e)
+        {
+            Nomear_convidados nomear_Convidados = new Nomear_convidados(usuarioLogado);
+            nomear_Convidados.Show();
+            this.Close();
         }
     }
 }

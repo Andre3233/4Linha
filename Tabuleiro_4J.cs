@@ -51,6 +51,8 @@ namespace _4Linha
             this.Load += Tabuleiro_4J_Load;
             pictureBox1.MouseClick += pictureBox1_MouseClick;
             pictureBox1.Paint += pictureBox1_Paint;
+
+            MostrarNomes(usuario);
         }
 
         private void Tabuleiro_4J_Load(object sender, EventArgs e)
@@ -252,6 +254,14 @@ namespace _4Linha
             Menu menu = new Menu(usuarioLogado, Nomear_convidados.convidados);
             menu.Show();
             this.Close();
+        }
+
+        private void MostrarNomes(string usuario)
+        {
+            lbJogador.Text = "Jogador: " + usuario;   // Nome do jogador 
+            lbConv1.Text = "Jogador: " + convidados[0];
+            lbConv2.Text = "Jogador: " + convidados[1];
+            lbConv4.Text = "Jogador: " + convidados[2];
         }
     }
 }

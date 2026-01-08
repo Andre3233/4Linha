@@ -364,24 +364,6 @@ namespace _4Linha
             this.Close();
         }
 
-        private void Tabuleiro_1J_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                // Cancelar o fechamento automático
-                e.Cancel = true;
-
-                // Esconder o tabuleiro
-                this.Hide();
-
-                // Abrir o menu
-                Menu menu = new Menu(usuarioLogado, Nomear_convidados.convidados);
-                menu.ShowDialog();
-
-                // Fechar de vez depois do menu
-                this.FormClosing -= Tabuleiro_1J_FormClosing; // desliga o evento para não entrar em loop
-                this.Close();
-            }
-        }
+        
     }
 }

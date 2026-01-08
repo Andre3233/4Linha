@@ -28,16 +28,16 @@ namespace _4Linha
         private void btnSozinho_Click(object sender, EventArgs e)
         {
             Tabuleiro_1J tabuleiro_1J = new Tabuleiro_1J(usuarioLogado);
-            this.Hide();
-            tabuleiro_1J.ShowDialog();
+            tabuleiro_1J.Show();
+            this.Close();
         }
 
         //Botão para se jogar com varias pessoas
         private void btn_Vpessoas_Click(object sender, EventArgs e)
         {
             Nomear_convidados nomear_Convidados = new Nomear_convidados(usuarioLogado);
-            this.Hide();
-            nomear_Convidados.ShowDialog();
+            nomear_Convidados.Show();
+            this.Close();
         }
     }
 }

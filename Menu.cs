@@ -15,12 +15,18 @@ namespace _4Linha
         // Propriedade privada para armazenar o username logado
         private string usuarioLogado;
         List<string> convidados = Nomear_convidados.convidados;
+        public static bool jaEntrouNoMenu = false;
 
         public Menu(string usuario, List<string> nomesConvidados)
         {
             InitializeComponent();
             usuarioLogado = usuario;
             convidados = nomesConvidados;
+        }
+
+        private void Menu_Load(object sender, EventArgs e)
+        {
+            jaEntrouNoMenu = true;
         }
 
         private void btn2J_Click(object sender, EventArgs e)
@@ -54,11 +60,6 @@ namespace _4Linha
             Tabuleiro_4J tabuleiro_4 = new Tabuleiro_4J(usuarioLogado, convidados);
             tabuleiro_4.Show();
             this.Close();
-        }
-
-        private void Menu_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnConv_Click(object sender, EventArgs e)

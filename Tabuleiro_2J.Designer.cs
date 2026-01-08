@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Tabuleiro_2J));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnMenu = new System.Windows.Forms.Button();
+            this.lbJogador = new System.Windows.Forms.Label();
+            this.lbConv1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,12 +56,32 @@
             this.btnMenu.UseVisualStyleBackColor = true;
             this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
+            // lbJogador
+            // 
+            this.lbJogador.AutoSize = true;
+            this.lbJogador.Location = new System.Drawing.Point(99, 25);
+            this.lbJogador.Name = "lbJogador";
+            this.lbJogador.Size = new System.Drawing.Size(35, 13);
+            this.lbJogador.TabIndex = 6;
+            this.lbJogador.Text = "label1";
+            // 
+            // lbConv1
+            // 
+            this.lbConv1.AutoSize = true;
+            this.lbConv1.Location = new System.Drawing.Point(679, 25);
+            this.lbConv1.Name = "lbConv1";
+            this.lbConv1.Size = new System.Drawing.Size(35, 13);
+            this.lbConv1.TabIndex = 8;
+            this.lbConv1.Text = "label2";
+            // 
             // Tabuleiro_2J
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 488);
+            this.Controls.Add(this.lbConv1);
+            this.Controls.Add(this.lbJogador);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Tabuleiro_2J";
@@ -75,5 +97,7 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnMenu;
+        private System.Windows.Forms.Label lbJogador;
+        private System.Windows.Forms.Label lbConv1;
     }
 }

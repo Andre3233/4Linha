@@ -51,7 +51,7 @@ namespace _4Linha
             else
             {
                 if (convidados.Count == 0)
-                    convidados.Add("Convidado 1"); // default se não houver nenhum nome
+                    convidados.Add("Jogador 1"); // default se não houver nenhum nome
                                                    // caso contrário mantém o nome anterior
             }
 
@@ -66,7 +66,7 @@ namespace _4Linha
             else
             {
                 if (convidados.Count < 2)
-                    convidados.Add("Convidado 2");
+                    convidados.Add("Jogador 2");
             }
 
             // Convidado 3
@@ -80,20 +80,31 @@ namespace _4Linha
             else
             {
                 if (convidados.Count < 3)
-                    convidados.Add("Convidado 3");
+                    convidados.Add("Jogador 3");
             }
 
             // Volta ao menu passando a lista atualizada
             Menu menu = new Menu(usuarioLogado, convidados);
-            this.Hide();
-            menu.ShowDialog();
+            menu.Show();
             this.Close();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            Modo_Jogo modo_Jogo = new Modo_Jogo(usuarioLogado);
-            modo_Jogo.ShowDialog();
+            //Se já tiver passado pelo menu,volta para lá 
+            if (_4Linha.Menu.jaEntrouNoMenu)
+            {
+                Menu menu = new Menu(usuarioLogado, convidados);
+                menu.Show();
+                this.Close();
+            }
+            else
+            {
+                Modo_Jogo modo_Jogo = new Modo_Jogo(usuarioLogado);
+                modo_Jogo.Show();
+                this.Close();
+            }
+
         }
 
         private void cbbxConv_SelectedIndexChanged(object sender, EventArgs e)

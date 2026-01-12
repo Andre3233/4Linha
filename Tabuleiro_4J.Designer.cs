@@ -61,36 +61,40 @@
             // lbConv2
             // 
             this.lbConv2.AutoSize = true;
-            this.lbConv2.Location = new System.Drawing.Point(476, 19);
+            this.lbConv2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbConv2.Location = new System.Drawing.Point(477, 19);
             this.lbConv2.Name = "lbConv2";
-            this.lbConv2.Size = new System.Drawing.Size(35, 13);
+            this.lbConv2.Size = new System.Drawing.Size(50, 16);
             this.lbConv2.TabIndex = 14;
             this.lbConv2.Text = "label2";
             // 
             // lbConv1
             // 
             this.lbConv1.AutoSize = true;
-            this.lbConv1.Location = new System.Drawing.Point(292, 19);
+            this.lbConv1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbConv1.Location = new System.Drawing.Point(288, 19);
             this.lbConv1.Name = "lbConv1";
-            this.lbConv1.Size = new System.Drawing.Size(35, 13);
+            this.lbConv1.Size = new System.Drawing.Size(50, 16);
             this.lbConv1.TabIndex = 13;
             this.lbConv1.Text = "label2";
             // 
             // lbJogador
             // 
             this.lbJogador.AutoSize = true;
-            this.lbJogador.Location = new System.Drawing.Point(91, 19);
+            this.lbJogador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbJogador.Location = new System.Drawing.Point(127, 19);
             this.lbJogador.Name = "lbJogador";
-            this.lbJogador.Size = new System.Drawing.Size(35, 13);
+            this.lbJogador.Size = new System.Drawing.Size(50, 16);
             this.lbJogador.TabIndex = 12;
             this.lbJogador.Text = "label1";
             // 
             // lbConv4
             // 
             this.lbConv4.AutoSize = true;
-            this.lbConv4.Location = new System.Drawing.Point(660, 19);
+            this.lbConv4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbConv4.Location = new System.Drawing.Point(634, 19);
             this.lbConv4.Name = "lbConv4";
-            this.lbConv4.Size = new System.Drawing.Size(35, 13);
+            this.lbConv4.Size = new System.Drawing.Size(50, 16);
             this.lbConv4.TabIndex = 15;
             this.lbConv4.Text = "label3";
             // 

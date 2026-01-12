@@ -150,6 +150,12 @@ namespace _4Linha
                 pictureBox1.Invalidate();
                 return; 
             }
+            if (TabuleiroCheio())
+            {
+                MostrarEmpate();
+                pictureBox1.Invalidate();
+                return;
+            }
 
             // Começar em vermelho
             jogadorAtual = (jogadorAtual == Color.Red) ? Color.Yellow : Color.Red;
@@ -250,7 +256,44 @@ namespace _4Linha
         private void MostrarNomes(string usuario)
         {
             lbJogador.Text = "Jogador: " + usuario;   // Nome do jogador 
+            lbJogador.ForeColor = Color.Red;
             lbConv1.Text = "Jogador: " + convidados[0];
+            lbConv1.ForeColor = Color.Yellow;
+        }
+
+        private bool TabuleiroCheio() 
+        {
+            for (int l = 0; l < linhas; l++)
+            {
+                for (int c = 0; c < colunas; c++)
+                {
+                    if (tabuleiro[l, c] == null)
+                        return false;
+                }
+            }
+            return true;
+        }
+
+        private void MostrarEmpate()
+        {
+            var resultado = MessageBox.Show(
+                "Empate!\nO tabuleiro está cheio.\nQueres jogar outra vez?",
+                "Empate!",
+                MessageBoxButtons.YesNo
+            );
+
+            jogoTerminado = true;
+
+            if (resultado == DialogResult.Yes)
+            {
+                ReiniciarJogo();
+            }
+            else
+            {
+                Menu menu = new Menu(usuarioLogado, convidados);
+                menu.Show();
+                this.Close();
+            }
         }
     }
 }

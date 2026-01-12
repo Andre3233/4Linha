@@ -49,7 +49,7 @@
             // 
             // btnMenu
             // 
-            this.btnMenu.Location = new System.Drawing.Point(735, 418);
+            this.btnMenu.Location = new System.Drawing.Point(735, 456);
             this.btnMenu.Name = "btnMenu";
             this.btnMenu.Size = new System.Drawing.Size(53, 20);
             this.btnMenu.TabIndex = 4;
@@ -60,27 +60,30 @@
             // lbConv1
             // 
             this.lbConv1.AutoSize = true;
-            this.lbConv1.Location = new System.Drawing.Point(381, 22);
+            this.lbConv1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbConv1.Location = new System.Drawing.Point(375, 22);
             this.lbConv1.Name = "lbConv1";
-            this.lbConv1.Size = new System.Drawing.Size(35, 13);
+            this.lbConv1.Size = new System.Drawing.Size(50, 16);
             this.lbConv1.TabIndex = 10;
             this.lbConv1.Text = "label2";
             // 
             // lbJogador
             // 
             this.lbJogador.AutoSize = true;
-            this.lbJogador.Location = new System.Drawing.Point(86, 22);
+            this.lbJogador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbJogador.Location = new System.Drawing.Point(125, 22);
             this.lbJogador.Name = "lbJogador";
-            this.lbJogador.Size = new System.Drawing.Size(35, 13);
+            this.lbJogador.Size = new System.Drawing.Size(50, 16);
             this.lbJogador.TabIndex = 9;
             this.lbJogador.Text = "label1";
             // 
             // lbConv2
             // 
             this.lbConv2.AutoSize = true;
-            this.lbConv2.Location = new System.Drawing.Point(664, 22);
+            this.lbConv2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbConv2.Location = new System.Drawing.Point(617, 22);
             this.lbConv2.Name = "lbConv2";
-            this.lbConv2.Size = new System.Drawing.Size(35, 13);
+            this.lbConv2.Size = new System.Drawing.Size(50, 16);
             this.lbConv2.TabIndex = 11;
             this.lbConv2.Text = "label2";
             // 

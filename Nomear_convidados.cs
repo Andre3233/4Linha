@@ -51,7 +51,7 @@ namespace _4Linha
             else
             {
                 if (convidados.Count == 0)
-                    convidados.Add("Jogador 1"); // default se não houver nenhum nome
+                    convidados.Add("Convidado 1"); // default se não houver nenhum nome
                                                    // caso contrário mantém o nome anterior
             }
 
@@ -66,7 +66,7 @@ namespace _4Linha
             else
             {
                 if (convidados.Count < 2)
-                    convidados.Add("Jogador 2");
+                    convidados.Add("Convidado 2");
             }
 
             // Convidado 3
@@ -80,7 +80,7 @@ namespace _4Linha
             else
             {
                 if (convidados.Count < 3)
-                    convidados.Add("Jogador 3");
+                    convidados.Add("Convidado 3");
             }
 
             // Volta ao menu passando a lista atualizada

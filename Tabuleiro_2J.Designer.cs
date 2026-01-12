@@ -59,18 +59,20 @@
             // lbJogador
             // 
             this.lbJogador.AutoSize = true;
-            this.lbJogador.Location = new System.Drawing.Point(99, 25);
+            this.lbJogador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbJogador.Location = new System.Drawing.Point(135, 9);
             this.lbJogador.Name = "lbJogador";
-            this.lbJogador.Size = new System.Drawing.Size(35, 13);
+            this.lbJogador.Size = new System.Drawing.Size(50, 16);
             this.lbJogador.TabIndex = 6;
             this.lbJogador.Text = "label1";
             // 
             // lbConv1
             // 
             this.lbConv1.AutoSize = true;
-            this.lbConv1.Location = new System.Drawing.Point(679, 25);
+            this.lbConv1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbConv1.Location = new System.Drawing.Point(590, 9);
             this.lbConv1.Name = "lbConv1";
-            this.lbConv1.Size = new System.Drawing.Size(35, 13);
+            this.lbConv1.Size = new System.Drawing.Size(50, 16);
             this.lbConv1.TabIndex = 8;
             this.lbConv1.Text = "label2";
             // 

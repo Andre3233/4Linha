@@ -51,6 +51,7 @@ namespace _4Linha
             this.Load += Tabuleiro_1J_Load;
             pictureBox1.MouseClick += pictureBox1_MouseClick;
             pictureBox1.Paint += pictureBox1_Paint;
+            MostrarNomes(usuario);
         }
 
         private void Tabuleiro_1J_Load(object sender, EventArgs e)
@@ -364,6 +365,13 @@ namespace _4Linha
             this.Close();
         }
 
-        
+        private void MostrarNomes(string usuario)
+        {
+            lbJogador.Text = "Jogador: " + usuario;   // Nome do jogador 
+            lbJogador.ForeColor = Color.Red;
+            lbBot.ForeColor = Color.Yellow;
+        }
+
+
     }
 }

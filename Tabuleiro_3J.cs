@@ -156,6 +156,12 @@ namespace _4Linha
                     return;
                 }
             }
+            if (TabuleiroCheio())
+            {
+                MostrarEmpate();
+                pictureBox1.Invalidate();
+                return;
+            }
 
             // Troca de jogador (Vermelho ↔ Amarelo)
             indiceJogadorAtual = (indiceJogadorAtual + 1) % jogadores.Length;
@@ -259,8 +265,46 @@ namespace _4Linha
         private void MostrarNomes(string usuario)
         {
             lbJogador.Text = "Jogador: " + usuario;   // Nome do jogador 
+            lbJogador.ForeColor = Color.Red;
             lbConv1.Text = "Jogador: " + convidados[0];
+            lbConv1.ForeColor = Color.Yellow;
             lbConv2.Text = "Jogador: " + convidados[1];
+            lbConv2.ForeColor = Color.Green;
+        }
+
+        private bool TabuleiroCheio()
+        {
+            for (int l = 0; l < linhas; l++)
+            {
+                for (int c = 0; c < colunas; c++)
+                {
+                    if (tabuleiro[l, c] == null)
+                        return false;
+                }
+            }
+            return true;
+        }
+
+        private void MostrarEmpate()
+        {
+            var resultado = MessageBox.Show(
+                "Empate!\nO tabuleiro está cheio.\nQueres jogar outra vez?",
+                "Empate!",
+                MessageBoxButtons.YesNo
+            );
+
+            jogoTerminado = true;
+
+            if (resultado == DialogResult.Yes)
+            {
+                ReiniciarJogo();
+            }
+            else
+            {
+                Menu menu = new Menu(usuarioLogado, convidados);
+                menu.Show();
+                this.Close();
+            }
         }
     }
 }

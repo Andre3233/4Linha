@@ -17,16 +17,21 @@ namespace _4Linha
         List<string> convidados = Nomear_convidados.convidados;
         public static bool jaEntrouNoMenu = false;
 
-        public Menu(string usuario, List<string> nomesConvidados)
+        public Menu(string usuario)
         {
             InitializeComponent();
             usuarioLogado = usuario;
-            convidados = nomesConvidados;
         }
 
         private void Menu_Load(object sender, EventArgs e)
         {
             jaEntrouNoMenu = true;
+
+            convidados = Nomear_convidados.convidados;
+
+            if (convidados == null)
+                convidados = new List<string>();
+
         }
 
         private void btn2J_Click(object sender, EventArgs e)

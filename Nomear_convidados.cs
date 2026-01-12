@@ -51,7 +51,7 @@ namespace _4Linha
             else
             {
                 if (convidados.Count == 0)
-                    convidados.Add("Convidado 1"); // default se não houver nenhum nome
+                    convidados.Add("Jogador 1"); // default se não houver nenhum nome
                                                    // caso contrário mantém o nome anterior
             }
 
@@ -66,7 +66,7 @@ namespace _4Linha
             else
             {
                 if (convidados.Count < 2)
-                    convidados.Add("Convidado 2");
+                    convidados.Add("jogador 2");
             }
 
             // Convidado 3
@@ -80,11 +80,11 @@ namespace _4Linha
             else
             {
                 if (convidados.Count < 3)
-                    convidados.Add("Convidado 3");
+                    convidados.Add("Jogador 3");
             }
 
             // Volta ao menu passando a lista atualizada
-            Menu menu = new Menu(usuarioLogado, convidados);
+            Menu menu = new Menu(usuarioLogado);
             menu.Show();
             this.Close();
         }
@@ -94,7 +94,7 @@ namespace _4Linha
             //Se já tiver passado pelo menu,volta para lá 
             if (_4Linha.Menu.jaEntrouNoMenu)
             {
-                Menu menu = new Menu(usuarioLogado, convidados);
+                Menu menu = new Menu(usuarioLogado);
                 menu.Show();
                 this.Close();
             }

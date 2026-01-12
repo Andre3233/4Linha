@@ -147,6 +147,11 @@ namespace _4Linha
                 return; 
 
             }
+            if (TabuleiroCheio())
+            {
+                MostrarEmpate();
+                return;
+            }
 
             // Troca de jogador
             jogadorAtual = (jogadorAtual == Color.Red) ? Color.Yellow : Color.Red;
@@ -258,6 +263,7 @@ namespace _4Linha
                     linhaLivre = l;
                     break;
                 }
+
                 tabuleiro[l, c] = null;
             }
 
@@ -319,13 +325,20 @@ namespace _4Linha
                 else if (resultado == DialogResult.Cancel) 
                 {
                     this.Close();
-                    Menu menu = new Menu(usuarioLogado, Nomear_convidados.convidados);
+                    Menu menu = new Menu(usuarioLogado);
                     menu.ShowDialog();
                 }
 
                 pictureBox1.Invalidate(); 
                 return;
             }
+            if (TabuleiroCheio())
+            {
+                MostrarEmpate();
+                pictureBox1.Invalidate();
+                return;
+            }
+
 
             // Volta o turno ao jogador
             jogadorAtual = Color.Red;
@@ -360,7 +373,7 @@ namespace _4Linha
             }
 
             // Abre o Menu passando o username logado
-            Menu menu = new Menu(usuarioLogado, Nomear_convidados.convidados);
+            Menu menu = new Menu(usuarioLogado);
             menu.Show();
             this.Close();
         }
@@ -372,6 +385,39 @@ namespace _4Linha
             lbBot.ForeColor = Color.Yellow;
         }
 
+        private bool TabuleiroCheio()
+        {
+            for (int l = 0; l < linhas; l++)
+            {
+                for (int c = 0; c < colunas; c++)
+                {
+                    if (tabuleiro[l, c] == null)
+                        return false;
+                }
+            }
+            return true;
+        }
 
+        private void MostrarEmpate()
+        {
+            var resultado = MessageBox.Show(
+                "Empate!\nO tabuleiro está cheio.\nQueres jogar outra vez?",
+                "Empate!",
+                MessageBoxButtons.YesNo
+            );
+
+            jogoTerminado = true;
+
+            if (resultado == DialogResult.Yes)
+            {
+                ReiniciarJogo();
+            }
+            else
+            {
+                Menu menu = new Menu(usuarioLogado);
+                menu.Show();
+                this.Close();
+            }
+        }
     }
 }

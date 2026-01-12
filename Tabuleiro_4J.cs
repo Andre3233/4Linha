@@ -257,7 +257,7 @@ namespace _4Linha
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            Menu menu = new Menu(usuarioLogado, Nomear_convidados.convidados);
+            Menu menu = new Menu(usuarioLogado);
             menu.Show();
             this.Close();
         }
@@ -303,7 +303,7 @@ namespace _4Linha
             }
             else
             {
-                Menu menu = new Menu(usuarioLogado, convidados);
+                Menu menu = new Menu(usuarioLogado);
                 menu.Show();
                 this.Close();
             }
